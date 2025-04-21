@@ -34,7 +34,6 @@ public class Waitlist {
    * @param toRemove studentIds of the students to remove
    */
   public void removeStudents(Set<String> toRemove) {
-    // TODO: Implement this!
     // The remaining students should be slid down to the front of the array, not
     // leaving any gaps. All the nulls should be at the end.
     // Example:
@@ -43,14 +42,26 @@ public class Waitlist {
     //
     // expected studentIds after running: ["x", "q", "v", null, null, null, null] 
 
-
     // Required complexity:
     // Time: O(n)
     // Space: O(1)
     // Where n is studentIds.length
 
-    // Don't forget to write tests too!
-  }
+      int nextIndex = 0;
+      for (int i = 0; i < studentIds.length; i++) {
+        if (studentIds[i] !=null && !toRemove.contains(studentIds[i])) {
+          studentIds[nextIndex] = studentIds[i];
+          nextIndex++;
+        } //end if
+      }//end for
+    
+      while (nextIndex < studentIds.length) {
+        studentIds[nextIndex] = null;
+        nextIndex++;
+      }//end while
+
+    }//end removeStudents
+    
 
   /**
    * Returns a copy of the waitlist.
